@@ -1,0 +1,30 @@
+name: Create conda subchannel
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write  # to deploy to GH Pages automatically
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
+    steps:
+      - uses: jaimergp/conda-subchannel@main
+        with:
+          channel: conda-forge
+          subdirs: >
+            linux-64
+            linux-aarch64
+            linux-ppc64le
+            osx-64
+            osx-arm64
+            win-64
+            win-arm64
+            noarch
+          keep-trees: >
+            python=3.9
