@@ -15,7 +15,7 @@ jobs:
     concurrency:
       group: ${{ github.workflow }}-${{ github.ref }}
     steps:
-      - uses: jaimergp/conda-subchannel@fix-action-install
+      - uses: jaimergp/conda-subchannel@main
         with:
           channel: conda-forge
           subdirs: >
