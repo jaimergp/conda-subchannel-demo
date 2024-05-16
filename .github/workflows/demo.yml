@@ -5,6 +5,7 @@ on:
     branches:
       - main
   pull_request:
+  workflow_dispatch:
 
 jobs:
   build-and-deploy:
@@ -14,7 +15,7 @@ jobs:
     concurrency:
       group: ${{ github.workflow }}-${{ github.ref }}
     steps:
-      - uses: jaimergp/conda-subchannel@main
+      - uses: jaimergp/conda-subchannel@fix-action-install
         with:
           channel: conda-forge
           subdirs: >
